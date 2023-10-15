@@ -1,5 +1,3 @@
-let intervalId;
-
 function startCarousel() {
   let activeImage = 0;
   const images = document.querySelectorAll("#carousel img");
@@ -10,7 +8,7 @@ function startCarousel() {
       clearInterval(intervalId);
       return;
     }
-  
+    //Loops the carousel
     images[activeImage].classList.remove("active");
     activeImage = (activeImage + 1) % images.length;
     images[activeImage].classList.add("active");

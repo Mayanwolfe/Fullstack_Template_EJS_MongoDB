@@ -19,8 +19,11 @@ app.use(cors());
 // Serve static files
 app.use(express.static('public'));
 
-// Body Parser Middleware
+// Parse requests for strings/arrays, use extended: true for nested requests
 app.use(express.urlencoded({ extended: false }));
+
+//Parse JSON requests
+app.use(express.json())
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
@@ -43,6 +46,7 @@ app.post('/item', async (req, res) => {
     await newItem.save();
     res.redirect('/item');
   } catch (err) {
+    //you can set up custom error handling on the client side using this information
     res.redirect('/item?error=true');
   }
 });
@@ -55,6 +59,7 @@ app.post('/item/update/:id', async (req, res) => {
     await Item.findByIdAndUpdate(id, { name, description });
     res.redirect('/item');
   } catch (err) {
+    //you can set up custom error handling on the client side using this information
     res.redirect(`/item?error=true`);
   }
 });
@@ -63,6 +68,7 @@ app.post('/item/update/:id', async (req, res) => {
 app.delete('/item/delete/:id', async (req, res) => {
   const { id } = req.params;
   await Item.findByIdAndDelete(id);
+  //Send success back to the client-side function
   res.status(200).json({ message: 'Item deleted successfully' });
 });
 

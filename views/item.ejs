@@ -17,7 +17,7 @@
 
   <!-- Update -->
   <form id="updateForm" action="/item/update/" method="POST">
-    <input type="hidden" name="_id" id="updateId">
+    <input type="hidden" name="_id" id="updateId"> <!--Bundle ID with the form data-->
     <input type="text" name="name" id="updateName" placeholder="New item name" required>
     <input type="text" name="description" id="updateDescription" placeholder="New item description" required>
     <button type="submit">Update Item</button>
