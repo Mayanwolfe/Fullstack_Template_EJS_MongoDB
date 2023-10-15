@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Item</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('./partials/header') %>
+  <h1>Item Page</h1>
+
+  <!-- Create -->
+  <form id="createForm" action="/item" method="POST">
+    <input type="text" name="name" placeholder="Item name" required>
+    <input type="text" name="description" placeholder="Item description" required>
+    <button type="submit">Create Item</button>
+  </form>
+
+  <!-- Update -->
+  <form id="updateForm" action="/item/update/" method="POST">
+    <input type="hidden" name="_id" id="updateId">
+    <input type="text" name="name" id="updateName" placeholder="New item name" required>
+    <input type="text" name="description" id="updateDescription" placeholder="New item description" required>
+    <button type="submit">Update Item</button>
+  </form>
+
+  <!-- Display items -->
+  <ul id="itemList">
+    <% items.forEach((item) => { %>
+      <li>
+        <span><%= item.name %>: <%= item.description %></span>
+        <button onclick="editItem('<%= item._id %>', '<%= item.name %>', '<%= item.description %>')">Edit</button>
+        <button onclick="deleteItem('<%= item._id %>')">Delete</button>
+      </li>
+    <% }); %>
+  </ul>
+
+  <script src="/js/script.js"></script>
+
+</body>
+</html>
